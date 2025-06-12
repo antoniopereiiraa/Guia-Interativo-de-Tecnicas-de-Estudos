@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Interativo de Técnicas de Estudo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="icon" type="img/png" href="favicon.png">
+
+    <!-- Chosen Palette: Warm Neutrals (Cream, Dark Slate, Terracotta Accent) -->
+    <!-- Application Structure Plan: A single-page application with a fixed top navigation to switch between five main content sections: 'Início', 'A Arte de Resumir', 'Criando Questões', 'Explorador de Conceitos', and 'Integrando Técnicas'. This expanded task-oriented structure now offers more direct tools for active learning. The key interactions include interactive accordions for summarization steps, an interactive chart for Bloom's Taxonomy, and new AI-powered tools for generating summaries, study questions, flashcards, and concept explanations. This design prioritizes usability, active engagement, and direct application of AI for enhanced study. -->
+    <!-- Visualization & Content Choices: Report Info: Summarization Steps table -> Goal: Organize/Inform -> Viz/Method: Interactive accordion (HTML/CSS/JS) -> Interaction: Click to expand/collapse steps -> Justification: Breaks down the process into manageable, sequential steps, preventing cognitive overload from a large table. || Report Info: Bloom's Taxonomy table -> Goal: Compare/Organize -> Viz/Method: Interactive Horizontal Bar Chart (Chart.js/Canvas) -> Interaction: Clicking a bar (cognitive level) updates a detail panel with keywords, purpose, and examples -> Justification: Transforms static data into an engaging, exploratory tool that visually represents the hierarchy and encourages active learning. || Report Info: Integration of techniques -> Goal: Show Relationships -> Viz/Method: Two-column layout with visual connectors (HTML/CSS) -> Interaction: Subtle hover effects -> Justification: Clearly illustrates the synergistic, cyclical relationship between summarizing and questioning, making the abstract concept more concrete. || New Feature: Text Summarization -> Goal: Inform/Condense -> Viz/Method: AI-powered text area and output -> Interaction: User inputs text, clicks button to get summary -> Justification: Provides an immediate, practical application of summarization principles. || New Feature: Question Generation -> Goal: Test/Deepen Understanding -> Viz/Method: AI-powered text area, dropdown for Bloom's level, and list output -> Interaction: User inputs text, selects level, clicks button to get questions -> Justification: Automates the creation of varied study questions, promoting active recall and higher-order thinking. || New Feature: Flashcard Generation -> Goal: Memorization/Recall -> Viz/Method: AI-powered text area and interactive flip cards -> Interaction: User inputs text, clicks button to get flashcards, clicks cards to flip -> Justification: Offers a popular, effective method for active recall and self-testing. || New Feature: Concept Explanation -> Goal: Clarification/Understanding -> Viz/Method: AI-powered input field and text output -> Interaction: User types a concept/question, gets an explanation -> Justification: Acts as an on-demand tutor for quick clarifications and deeper understanding of complex topics. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <span class="text-xl font-bold text-[#3D405B]">Estudo Ativo</span>
+                <div class="hidden sm:flex items-center space-x-8">
+                    <a href="#inicio" data-target="inicio" class="nav-link font-semibold pb-1 active">Início</a>
+                    <a href="#resumir" data-target="resumir" class="nav-link font-semibold pb-1">A Arte de Resumir</a>
+                    <a href="#questionar" data-target="questionar" class="nav-link font-semibold pb-1">Criando
+                        Questões</a>
+                    <a href="#explorar-conceitos" data-target="explorar-conceitos"
+                        class="nav-link font-semibold pb-1">Explorador de Conceitos</a>
+                    <a href="#integrar" data-target="integrar" class="nav-link font-semibold pb-1">Integrando
+                        Técnicas</a>
+                </div>
+                <div class="sm:hidden">
+                    <select id="mobile-nav"
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="inicio">Início</option>
+                        <option value="resumir">A Arte de Resumir</option>
+                        <option value="questionar">Criando Questões</option>
+                        <option value="explorar-conceitos">Explorador de Conceitos</option>
+                        <option value="integrar">Integrando Técnicas</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <section id="inicio" class="content-section active">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#3D405B]">Otimize Seus Estudos com
+                    Aprendizagem Ativa</h1>
+                <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">Vá além da memorização. Aprenda a
+                    transformar informações em conhecimento profundo e duradouro através de duas técnicas poderosas:
+                    resumos eficazes e a criação de questões de estudo impactantes.</p>
+            </div>
+            <div class="mt-12 grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#3D405B]">De Passivo a Ativo</h2>
+                    <p class="mt-4 text-gray-600">O estudo eficaz na universidade exige mais do que apenas ler. Requer
+                        um engajamento ativo com o material. Enquanto o aprendizado passivo se concentra em recordar
+                        informações, o aprendizado ativo envolve analisar, avaliar e criar a partir do conhecimento
+                        adquirido. Adotar estratégias ativas é fundamental para o sucesso acadêmico, transformando a
+                        maneira como você processa e retém o conteúdo.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#E07A5F]">Por que esta Abordagem Funciona?</h2>
+                    <p class="mt-4 text-gray-600">Este guia apresenta um sistema integrado. Ao <strong
+                            class="font-semibold">resumir</strong>, você destila a informação à sua essência,
+                        facilitando a compreensão. Ao <strong class="font-semibold">formular questões</strong>, você
+                        interage criticamente com essa essência, testando seu conhecimento e aprofundando sua análise.
+                        Juntas, essas técnicas criam um ciclo de aprendizado que fortalece a retenção e o pensamento
+                        crítico.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resumir" class="content-section">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#3D405B]">A Arte de Resumir para o Estudo Eficaz</h1>
+                <p class="mt-3 max-w-3xl mx-auto text-lg text-gray-600">A sumarização é uma habilidade que, quando
+                    dominada, aprimora significativamente a compreensão. Esta seção detalha como criar resumos que
+                    realmente funcionam como ferramentas de estudo.</p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">Guia Passo a Passo</h2>
+                    <div id="accordion-container" class="space-y-3"></div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">Princípios e Armadilhas</h2>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-[#3D405B]">O Que é um Resumo Eficaz?</h3>
+                        <p class="mt-2 text-gray-600">É uma versão condensada de um texto que apresenta as ideias
+                            principais com suas próprias palavras. Ele deve representar fielmente a intenção do autor,
+                            sem incluir suas opiniões pessoais, funcionando como um diagnóstico do seu próprio
+                            entendimento.</p>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold text-[#3D405B]">Armadilhas Comuns a Evitar</h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="pitfall-card bg-white p-4 rounded-r-lg shadow-sm">
+                                <h4 class="font-bold">❌ Deturpação do Autor</h4>
+                                <p class="text-gray-600 text-sm mt-1">Omitir detalhes cruciais pode alterar o "espírito
+                                    do texto". O objetivo é condensar, não distorcer a mensagem original.</p>
+                            </div>
+                            <div class="pitfall-card bg-white p-4 rounded-r-lg shadow-sm">
+                                <h4 class="font-bold">❌ Inclusão de Opiniões</h4>
+                                <p class="text-gray-600 text-sm mt-1">Um resumo deve ser objetivo. Guarde suas análises
+                                    e críticas para outro momento. A integridade acadêmica exige essa distinção.</p>
+                            </div>
+                            <div class="pitfall-card bg-white p-4 rounded-r-lg shadow-sm">
+                                <h4 class="font-bold">❌ Cópia de Frases</h4>
+                                <p class="text-gray-600 text-sm mt-1">Evite copiar trechos ou a estrutura original. O
+                                    verdadeiro aprendizado vem de reprocessar e reexpressar as ideias com suas próprias
+                                    palavras.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gemini API: Summarization Assistant -->
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#3D405B] mb-4">Gerar Resumo ✨</h2>
+                <p class="text-gray-600 mb-4">Cole um texto abaixo e use a inteligência artificial para gerar um resumo
+                    conciso.</p>
+                <textarea id="summary-input"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E07A5F] focus:border-transparent"
+                    rows="8" placeholder="Cole seu texto aqui para gerar um resumo..."></textarea>
+                <button id="generate-summary-btn"
+                    class="mt-4 px-6 py-3 bg-[#E07A5F] text-white font-semibold rounded-md hover:bg-[#c96a50] transition-colors focus:outline-none focus:ring-2 focus:ring-[#E07A5F] focus:ring-opacity-50">Gerar
+                    Resumo</button>
+                <div id="summary-output"
+                    class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md text-gray-700 hidden">
+                    <p class="font-semibold text-lg mb-2">Seu Resumo:</p>
+                    <p id="summary-text"></p>
+                </div>
+                <div id="summary-loading" class="mt-4 text-center text-gray-500 hidden">Gerando resumo...</div>
+            </div>
+            <!-- End Gemini API: Summarization Assistant -->
+        </section>
+
+        <section id="questionar" class="content-section">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#3D405B]">Elaborando Questões de Estudo Impactantes</h1>
+                <p class="mt-3 max-w-3xl mx-auto text-lg text-gray-600">Formular suas próprias questões é uma estratégia
+                    ativa que simula a experiência de um exame e aprofunda sua análise do material. Nesta seção, você
+                    aprenderá a criar perguntas que elevam seu pensamento a novos níveis.</p>
+            </div>
+
+            <div class="mt-10">
+                <h2 class="text-2xl font-bold text-center mb-2">Níveis de Aprendizagem (Taxonomia de Bloom)</h2>
+                <p class="text-center text-gray-600 mb-6">Clique em um nível cognitivo no gráfico para explorar seus
+                    detalhes.</p>
+                <div class="grid lg:grid-cols-5 gap-6">
+                    <div class="lg:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="bloomChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="bloom-details-container"
+                        class="lg:col-span-3 bg-white p-6 rounded-lg shadow-md self-start">
+                        <div id="bloom-details">
+                            <h3 class="text-xl font-bold text-[#3D405B]">Selecione um Nível</h3>
+                            <p class="mt-2 text-gray-600">Clique nas barras à esquerda para ver as palavras-chave, o
+                                propósito e exemplos de perguntas para cada nível de aprendizado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gemini API: Question Generator -->
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#3D405B] mb-4">Gerar Questões de Estudo ✨</h2>
+                <p class="text-gray-600 mb-4">Cole um texto abaixo e use a inteligência artificial para gerar questões
+                    de estudo personalizadas.</p>
+                <textarea id="question-input"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E07A5F] focus:border-transparent"
+                    rows="8" placeholder="Cole seu texto aqui para gerar questões..."></textarea>
+                <div
+                    class="mt-4 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <label for="bloom-level" class="font-semibold text-gray-700">Nível de Bloom (Opcional):</label>
+                    <select id="bloom-level"
+                        class="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E07A5F] focus:border-transparent w-full sm:w-auto">
+                        <option value="">Qualquer Nível</option>
+                        <option value="Lembrar">Lembrar</option>
+                        <option value="Compreender">Compreender</option>
+                        <option value="Aplicar">Aplicar</option>
+                        <option value="Analisar">Analisar</option>
+                        <option value="Avaliar">Avaliar</option>
+                        <option value="Criar">Criar</option>
+                    </select>
+                </div>
+                <button id="generate-questions-btn"
+                    class="mt-4 px-6 py-3 bg-[#81B29A] text-white font-semibold rounded-md hover:bg-[#6a9e82] transition-colors focus:outline-none focus:ring-2 focus:ring-[#81B29A] focus:ring-opacity-50">Gerar
+                    Questões</button>
+                <div id="questions-output"
+                    class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md text-gray-700 hidden">
+                    <p class="font-semibold text-lg mb-2">Suas Questões:</p>
+                    <ol id="questions-list" class="list-decimal list-inside space-y-2"></ol>
+                </div>
+                <div id="questions-loading" class="mt-4 text-center text-gray-500 hidden">Gerando questões...</div>
+            </div>
+            <!-- End Gemini API: Question Generator -->
+
+            <!-- Gemini API: Flashcard Generator -->
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#3D405B] mb-4">Gerar Flashcards ✨</h2>
+                <p class="text-gray-600 mb-4">Cole um texto abaixo para gerar flashcards interativos
+                    (pergunta/resposta).</p>
+                <textarea id="flashcard-input"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E07A5F] focus:border-transparent"
+                    rows="8" placeholder="Cole seu texto aqui para gerar flashcards..."></textarea>
+                <button id="generate-flashcards-btn"
+                    class="mt-4 px-6 py-3 bg-[#F2CC8F] text-[#3D405B] font-semibold rounded-md hover:bg-[#e0b87a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#F2CC8F] focus:ring-opacity-50">Gerar
+                    Flashcards</button>
+                <div id="flashcards-output" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
+                    <!-- Flashcards will be inserted here -->
+                </div>
+                <div id="flashcards-loading" class="mt-4 text-center text-gray-500 hidden">Gerando flashcards...</div>
+            </div>
+            <!-- End Gemini API: Flashcard Generator -->
+        </section>
+
+        <section id="explorar-conceitos" class="content-section">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#3D405B]">Explorador de Conceitos</h1>
+                <p class="mt-3 max-w-3xl mx-auto text-lg text-gray-600">Obtenha explicações rápidas e claras sobre
+                    qualquer conceito. Digite sua pergunta ou o conceito que deseja entender.</p>
+            </div>
+
+            <!-- Gemini API: Concept Explainer -->
+            <div class="mt-10 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#3D405B] mb-4">Entenda Qualquer Conceito ✨</h2>
+                <p class="text-gray-600 mb-4">Digite um conceito ou uma pergunta para receber uma explicação detalhada.
+                </p>
+                <input type="text" id="concept-input"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E07A5F] focus:border-transparent"
+                    placeholder="Ex: O que é a Teoria da Relatividade?">
+                <button id="explain-concept-btn"
+                    class="mt-4 px-6 py-3 bg-[#6D597A] text-white font-semibold rounded-md hover:bg-[#5a4866] transition-colors focus:outline-none focus:ring-2 focus:ring-[#6D597A] focus:ring-opacity-50">Explicar
+                    Conceito</button>
+                <div id="concept-output"
+                    class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md text-gray-700 hidden">
+                    <p class="font-semibold text-lg mb-2">Explicação:</p>
+                    <p id="concept-text"></p>
+                </div>
+                <div id="concept-loading" class="mt-4 text-center text-gray-500 hidden">Buscando explicação...</div>
+            </div>
+            <!-- End Gemini API: Concept Explainer -->
+        </section>
+
+        <section id="integrar" class="content-section">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#3D405B]">Integrando Resumo e Questões para Otimizar o
+                    Estudo</h1>
+                <p class="mt-3 max-w-3xl mx-auto text-lg text-gray-600">A verdadeira potência dessas técnicas reside na
+                    sua integração. Descubra como usar resumos e questões em conjunto para criar uma abordagem de estudo
+                    sinérgica e altamente eficaz.</p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#3D405B]">Dos Resumos para as Questões</h2>
+                    <div class="mt-4 text-center text-5xl mb-4">➡️</div>
+                    <p class="text-gray-600">Um resumo bem elaborado funciona como um "mapa" das ideias mais importantes
+                        de um texto. Ele isola os argumentos-chave, fornecendo a base perfeita para gerar perguntas
+                        direcionadas. Use seu resumo para formular questões em todos os níveis cognitivos:
+                    </p>
+                    <ul class="mt-4 space-y-2 list-disc list-inside text-gray-600">
+                        <li><strong>Lembrar:</strong> Pergunte sobre um termo-chave do resumo.</li>
+                        <li><strong>Analisar:</strong> Questione a relação entre duas ideias principais.</li>
+                        <li><strong>Criar:</strong> Proponha uma nova solução baseada nos conceitos resumidos.</li>
+                    </ul>
+                    <p class="mt-4 font-semibold">O resumo identifica o <strong class="text-[#E07A5F]">"quê"</strong>, e
+                        as questões investigam o <strong class="text-[#E07A5F]">"como"</strong> e o <strong
+                            class="text-[#E07A5F]">"porquê"</strong>.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#3D405B]">Das Questões para os Resumos</h2>
+                    <div class="mt-4 text-center text-5xl mb-4">⬅️</div>
+                    <p class="text-gray-600">Responder ativamente às suas próprias perguntas é a melhor forma de testar
+                        a precisão do seu resumo e a profundidade da sua compreensão. Se você tiver dificuldade para
+                        responder a uma pergunta, isso indica uma de duas coisas:</p>
+                    <ul class="mt-4 space-y-2 list-disc list-inside text-gray-600">
+                        <li>Uma lacuna na sua compreensão do tópico.</li>
+                        <li>Uma falha no seu resumo (um ponto importante pode ter sido omitido).</li>
+                    </ul>
+                    <p class="mt-4 font-semibold">Este ciclo de feedback leva ao domínio, transformando a revisão em
+                        autoavaliação e aprendizado direcionado.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-teal-50 border-l-4 border-teal-500 text-teal-800 p-6 rounded-r-lg shadow-md">
+                <h3 class="text-2xl font-bold">Uma Abordagem Holística para a Aprendizagem</h3>
+                <p class="mt-2">Quando usadas em conjunto, a sumarização e a geração de questões criam um sistema de
+                    estudo poderoso. O resumo reduz a carga cognitiva, destilando a informação. As questões forçam o
+                    processamento ativo dessa informação. Juntos, eles otimizam a eficiência e a eficácia do
+                    aprendizado, capacitando você a assumir o controle total do seu processo de estudo e a se tornar um
+                    construtor ativo de conhecimento.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>© 2024 Guia Interativo de Técnicas de Estudo. Criado para promover a aprendizagem ativa.</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
